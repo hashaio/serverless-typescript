@@ -1,0 +1,7 @@
+service: ConfigSchemaHandlerTypescriptDefinitions
+
+provider:
+  name: aws
+
+plugins:
+  - ./node_modules/@hashaio/schema-plugin/dist/index
