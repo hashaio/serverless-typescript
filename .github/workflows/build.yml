@@ -11,20 +11,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-            fetch-depth: 2
+          fetch-depth: 2
       
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.8.0
 
-     - name: Setup Node.js environment
-          uses: actions/setup-node@v2
-          with:
-            node-version: 16
-            cache: 'pnpm'
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'pnpm'
 
-     - name: Install dependencies
-          run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Build
         run: pnpm build
@@ -36,7 +36,7 @@ jobs:
       - name: Update package.json version
         run: npm version ${{ steps.serverless-version.outputs.version }} --git-tag-version=false --workspaces=true
 
-      - name: Commit changes
+      - name: Commit changes 🧬
         uses: EndBug/add-and-commit@v5
         with:
           author_name: tsui66
@@ -48,7 +48,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish
+      - name: Publish 🏗 
         run: npm publish --workspaces=true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
