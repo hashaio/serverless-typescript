@@ -5,10 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
-    "prebuild": "rm -rf ./lib",
-    "prepare": "npm run build",
-    "test": "jest",
-    "postinstall": "npm run build"
+    "test": "jest"
   },
   "devDependencies": {
     "@types/json-schema": "^7.0.6",
