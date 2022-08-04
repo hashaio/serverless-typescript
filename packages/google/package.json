@@ -1,0 +1,42 @@
+{
+  "name": "@hashaio/google-functions-typescript",
+  "version": "3.21.0",
+  "description": "Serverless Google Cloud Functions typescript definitions",
+  "main": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hashaio/serverless-typescript.git"
+  },
+  "keywords": [
+    "google",
+    "gcp",
+    "functions",
+    "serverless",
+    "sls",
+    "typescript"
+  ],
+  "author": "tsui66",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hashaio/serverless-typescript/issues"
+  },
+  "homepage": "https://github.com/hashaio/serverless-typescript#readme",
+  "devDependencies": {
+    "@hashaio/schema-plugin": "workspace:^3.21.0",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
+    "ajv": "^8.11.0",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "json-schema-to-typescript": "^11.0.1",
+    "prettier": "^2.7.1",
+    "serverless": "^3.21.0",
+    "serverless-google-cloudfunctions": "^4.6.0",
+    "typescript": "^4.7.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
