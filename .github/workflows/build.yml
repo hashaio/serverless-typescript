@@ -1,0 +1,54 @@
+name: Definitions Builder
+on:
+  repository_dispatch:
+    types: [released]
+
+jobs:
+  generateTSDefinitions:
+    name: Generate Serverless typescript definitions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+            fetch-depth: 2
+      
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.8.0
+
+     - name: Setup Node.js environment
+          uses: actions/setup-node@v2
+          with:
+            node-version: 16
+            cache: 'pnpm'
+
+     - name: Install dependencies
+          run: pnpm install
+
+      - name: Build
+        run: pnpm build
+    
+      - id: serverless-version
+        name: Set Serverless latest version
+        run: echo "::set-output name=version::$(npm list serverless | grep serverless@ | sed 's/.*serverless@/v/g' | tr -d '[[:space:]]')"
+
+      - name: Update package.json version
+        run: npm version ${{ steps.serverless-version.outputs.version }} --git-tag-version=false --workspaces=true
+
+      - name: Commit changes 🧬
+        uses: EndBug/add-and-commit@v5
+        with:
+          author_name: tsui66
+          author_email: quinton.xu@gmail.com
+          branch: master
+          message: Add Serverless definitions for ${{ steps.serverless-version.outputs.version }}
+          add: packages/**/index.d.ts packages/**/package.json
+          tag: ${{ steps.serverless-version.outputs.version }} --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish 🏗 
+        run: npm publish --workspaces=true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
