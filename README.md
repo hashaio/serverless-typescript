@@ -1,77 +1,75 @@
-# Turborepo starter with pnpm
+# Serverless Typescript
 
-This is an official starter turborepo.
+Typescript definitions for Serverless serverless.ts service file. | AWS, Google, Azure
 
-## What's inside?
+### Packages
 
-This turborepo uses [pnpm](https://pnpm.io) as a packages manager. It includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org) app
-- `web`: another [Next.js](https://nextjs.org) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
+- `aws`: Scoped package named `@hashaio/aws-lambda-typescript`, implements typescript definitions for Serverless AWS Lambda.
+- `azure`: Scoped package named `@hashaio/azure-functions-typescript`, implements typescript definitions for Serverless Azure Functions
+- `google`: Scoped package named `@hashaio/google-functions-typescript`, implements typescript definitions for Serverless Google Cloud Functions
+- `serverless-schema-plugin`: Compile serverless json schema to typescript typings
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+Each package is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Utilities
+## Installation
+```
+npm i @hashaio/google-functions-typescript --save-dev
+```
+or
+```
+yarn add @hashaio/google-functions-typescript --dev
+```
+or
+```
+pnpm install @hashaio/google-functions-typescript --dev
+```
 
-This turborepo has some additional tools already setup for you:
+## Usage
+serverless.ts file
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+```
+import type { Google } from '@hashaio/google-functions-typescript';
 
-## Setup
+const serverlessConfiguration: Google = {
+  service: 'google-nodejs-typescript',
+  frameworkVersion: '*',
+  provider: {
+    name: 'google',
+    runtime: 'nodejs16',
+  },
+  functions: {
+    hello: {
+      handler: 'handler.hello',
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'hello',
+          }
+        }
+      ]
+    }
+  }
+}
 
-This repository is used in the `npx create-turbo@latest` command, and selected when choosing which package manager you wish to use with your monorepo (pnpm).
+module.exports = serverlessConfiguration;
+```
+
+## Contributing
 
 ### Build
+
+This repository is used in the `npx create-turbo@latest` command, and selected when choosing which package manager you wish to use with your monorepo (pnpm).
 
 To build all apps and packages, run the following command:
 
 ```
-cd my-turborepo
 pnpm run build
 ```
 
-### Develop
+> **No PR including modifications on `index.d.ts` will be accepted.** The service file Typescript definitions enclosed within this file are automatically generated at each new Serverless framework release. If any manual modification was added to this file, those would be overwritten during the next Serverless version release and TypeScript definitions generation process.
 
-To develop all apps and packages, run the following command:
+We love our contributors!
 
-```
-cd my-turborepo
-pnpm run dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.org/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-pnpx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
-
-```
-pnpx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Pipelines](https://turborepo.org/docs/core-concepts/pipelines)
-- [Caching](https://turborepo.org/docs/core-concepts/caching)
-- [Remote Caching](https://turborepo.org/docs/core-concepts/remote-caching)
-- [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
-- [Configuration Options](https://turborepo.org/docs/reference/configuration)
-- [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+Check out our [help wanted](https://github.com/hashaio/serverless-typescript/labels/help%20wanted) or [good first issue](https://github.com/hashaio/serverless-typescript/labels/good%20first%20issue) labels to find issues we want to move forward on with your help.
