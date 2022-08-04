@@ -21,6 +21,9 @@
     "url": "https://github.com/hashaio/serverless-typescript/issues"
   },
   "homepage": "https://github.com/hashaio/serverless-typescript#readme",
+  "scripts": {
+    "build": "sls schema"
+  },
   "devDependencies": {
     "@hashaio/schema-plugin": "workspace:^3.21.0",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
