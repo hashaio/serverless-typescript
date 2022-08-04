@@ -1,0 +1,9 @@
+service: ConfigSchemaHandlerTypescriptDefinitions
+
+provider:
+  name: azure
+  runtime: nodejs14
+
+plugins:
+  - serverless-azure-functions
+  - ./node_modules/@hashaio/schema-plugin/dist/index
