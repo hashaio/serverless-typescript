@@ -1,0 +1,20 @@
+{
+  "name": "@hashaio/schema-plugin",
+  "version": "3.21.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prebuild": "rm -rf ./lib",
+    "prepare": "npm run build",
+    "test": "jest",
+    "postinstall": "npm run build"
+  },
+  "devDependencies": {
+    "@types/json-schema": "^7.0.6",
+    "@types/serverless": "^3.12.7",
+    "json-schema": "^0.4.0",
+    "json-schema-to-typescript": "^11.0.1",
+    "lodash": "^4.17.21"
+  }
+}
