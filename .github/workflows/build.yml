@@ -1,7 +1,7 @@
 name: Definitions Builder
 on:
-  repository_dispatch:
-    types: [released]
+  push:
+    branches: ["main"]
 
 jobs:
   generateTSDefinitions:
