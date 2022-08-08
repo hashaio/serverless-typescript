@@ -34,7 +34,7 @@ jobs:
     
       - id: serverless-version
         name: Set Serverless latest version
-        run: echo "::set-output name=version::$(npm list serverless | grep serverless@ | sed 's/.*serverless@/v/g' | tr -d '[[:space:]]')"
+        run: echo "::set-output name=version::$(pnpm list serverless -r  | grep ^serverless -m 1| sed 's/serverless /v/g')"
 
       - name: Update package.json version
         run: npm version ${{ steps.serverless-version.outputs.version }} --git-tag-version=false --workspaces=true
@@ -44,7 +44,6 @@ jobs:
         with:
           author_name: tsui66
           author_email: quinton.xu@gmail.com
-          branch: release
           message: Add Serverless definitions for ${{ steps.serverless-version.outputs.version }}
           add: packages/**/index.d.ts packages/**/package.json
           tag: ${{ steps.serverless-version.outputs.version }} --force
