@@ -26,9 +26,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install serverless dependency
-        run: pnpm add serverless -g
-
       - name: Build
         run: pnpm build
     
