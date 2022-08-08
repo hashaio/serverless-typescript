@@ -1,7 +1,6 @@
 {
   "name": "@hashaio/schema-plugin",
   "version": "3.21.0",
-  "private": true,
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -15,5 +14,8 @@
     "json-schema": "^0.4.0",
     "json-schema-to-typescript": "11.0.2",
     "lodash": "^4.17.21"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
