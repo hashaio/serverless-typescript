@@ -46,9 +46,9 @@ jobs:
           add: packages/**/index.d.ts packages/**/package.json
           tag: ${{ steps.serverless-version.outputs.version }} --force
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SERVERLESS_TYPESCRIPT_GITHUB_TOKEN }}
 
       - name: Publish 🏗 
         run: npm publish --workspaces=true
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
