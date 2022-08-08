@@ -34,7 +34,7 @@ jobs:
     
       - id: serverless-version
         name: Set Serverless latest version
-        run: echo "::set-output name=version::$(pnpm list serverless -r  | grep ^serverless -m 1| sed 's/serverless /v/g')"
+        run: echo "::set-output name=version::$(pnpm list serverless -r  | grep ^serverless -m 1| sed 's/serverless //g')"
 
       - name: Update package.json version
         run: npm version ${{ steps.serverless-version.outputs.version }} --git-tag-version=false --workspaces=true
