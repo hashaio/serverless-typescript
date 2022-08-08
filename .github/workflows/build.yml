@@ -1,7 +1,7 @@
 name: Definitions Builder
 on:
-  repository_dispatch:
-    types: [released]
+  push:
+    branches: ["main"]
 
 jobs:
   generateTSDefinitions:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 2
       
@@ -18,7 +18,7 @@ jobs:
           version: 7.8.0
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'pnpm'
@@ -37,7 +37,7 @@ jobs:
         run: npm version ${{ steps.serverless-version.outputs.version }} --git-tag-version=false --workspaces=true
 
       - name: Commit changes 🧬
-        uses: EndBug/add-and-commit@v5
+        uses: EndBug/add-and-commit@v9
         with:
           author_name: tsui66
           author_email: quinton.xu@gmail.com
@@ -46,7 +46,7 @@ jobs:
           add: packages/**/index.d.ts packages/**/package.json
           tag: ${{ steps.serverless-version.outputs.version }} --force
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SERVERLESS_TYPESCRIPT_GITHUB_TOKEN }}
 
       - name: Publish 🏗 
         run: npm publish --workspaces=true
