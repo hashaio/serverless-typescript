@@ -44,7 +44,7 @@ jobs:
         with:
           author_name: tsui66
           author_email: quinton.xu@gmail.com
-          branch: main
+          branch: release
           message: Add Serverless definitions for ${{ steps.serverless-version.outputs.version }}
           add: packages/**/index.d.ts packages/**/package.json
           tag: ${{ steps.serverless-version.outputs.version }} --force
