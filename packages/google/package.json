@@ -33,7 +33,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-prettier": "4.2.1",
-    "json-schema-to-typescript": "11.0.2",
+    "json-schema-to-typescript": "13.1.2",
     "prettier": "2.7.1",
     "serverless": "3.21.0",
     "serverless-google-cloudfunctions": "4.6.0",
