@@ -37,7 +37,7 @@ jobs:
         run: npm version ${{ steps.serverless-version.outputs.version }} --git-tag-version=false --workspaces=true
 
       - name: Commit changes 🧬
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v10
         with:
           author_name: tsui66
           author_email: quinton.xu@gmail.com
